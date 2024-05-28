@@ -1,0 +1,26 @@
+pipeline{
+    agent { docker { image 'node:14'  // agent used here is docker_container
+           args '-u root:root'}}
+    stages{
+      stage('Dep install'){ 
+        steps{
+         //   sh 'npm cache clean'
+         //   sh 'sudo chown -R 995:993 "/.npm"'
+            sh 'npm install'
+        }
+      }
+      stage('package'){
+         steps{
+              sh 'rm -rf *.tgz || echo ""' // remove old artifact version use this command || OR echo "":run success on prompt
+              sh 'npm pack'
+         }
+      }
+      stage('upload artifactory'){
+         steps{
+         sh 'curl -uadmin:AP3yQAuEtNW52NMLC1yXozr4nbt -T *.tgz \
+         "http://ec2-100-26-216-129.compute-1.amazonaws.com:8081/artifactory/dev_nodejs_app/dev-app${BUILD_ID}.tgz"'
+         }
+      }
+      
+    }
+}
