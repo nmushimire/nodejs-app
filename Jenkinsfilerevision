@@ -17,8 +17,8 @@ pipeline{
       }
       stage('upload artifactory'){
          steps{
-         sh 'curl -uadmin:AP3yQAuEtNW52NMLC1yXozr4nbt -T *.tgz \
-         "http://ec2-100-26-216-129.compute-1.amazonaws.com:8081/artifactory/dev_nodejs_app/dev-app${BUILD_ID}.tgz"'
+         sh 'curl -uadmin:AP3Qc5nZm2nYEFqeDFD9RwQCnUB -T *.tgz \
+         "http://ec2-44-204-154-213.compute-1.amazonaws.com:8081/artifactory/nodejs-app/dev-app${BUILD_ID}.tgz"'
          }
       }
       
