@@ -11,7 +11,7 @@ pipeline{
       }
       stage('package'){
          steps{
-              sh 'rm -rf *.tgz || echo ""' // remove old artifact version use this command || OR echo "":run success on prompt
+              sh 'rm -rf *.tgz || echo ""' 
               sh 'npm pack'
          }
       }
